@@ -8,20 +8,14 @@ namespace testvue.Services
     {
         public DbSet<Purchase> Purchases { get; set; }
 
-        public AppDBContext() : base()
-        {
-
-        }
-
         public AppDBContext(DbContextOptions options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
-        protected override async void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            await this.Database.MigrateAsync();
+
         }
     }
 }

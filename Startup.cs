@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using testvue.Services;
 
-namespace tesvue
+namespace testvue
 {
     public class Startup
     {
@@ -24,8 +24,10 @@ namespace tesvue
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDBContext>(opts => opts.UseInMemoryDatabase(databaseName: "apptestdb"));
+            services.AddDbContext<AppDBContext>(opts => opts.UseMySql("Server=127.0.0.1;Database=testvue;Uid=flour;Pwd=Hello12"));
             services.AddMvc();
+
+            services.AddTransient<IPurchasesRepo, PurchasesRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +56,7 @@ namespace tesvue
 
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
-                    defaults : new { controller = "Home", action = "Index" });
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
     }

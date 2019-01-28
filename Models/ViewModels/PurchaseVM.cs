@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace testvue.Models
+namespace testvue.Models.ViewModels
 {
-    public class Purchase
+    public class PurchaseVM
     {
-        public int ID { get; set; }
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
